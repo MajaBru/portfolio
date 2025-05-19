@@ -1,19 +1,24 @@
 import './Globals.css'
-
+import { BrowserRouter, Routes, Route } from "react-router";
 import { Navbar } from './components/Navbar'
-import { Hero } from './components/Hero'
-import { AboutMe } from './components/AboutMe'
+import { Footer } from './components/Footer'
+
+import { Home } from './pages/Home'
+import { ProjectPage } from './pages/ProjectPage'
 
 function App() {
   return (
-    <div>
-      <p>portfolio</p>
-      <Navbar/>
-      <Hero/>
-      <main>
-        <AboutMe/>
+    <div className="flex flex-col min-h-screen">
+      <Navbar />
+      <main >
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="/:projectslug" element={<ProjectPage />} />
+        </Routes>
       </main>
+      <Footer />
     </div>
-  )
+  );
 }
+
 export default App

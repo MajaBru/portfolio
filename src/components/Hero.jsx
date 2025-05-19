@@ -3,7 +3,7 @@ import portrett from "../assets/portrett_m.jpg";
 
 export const Hero = () => {
 return (
-    <section className="flex flex-col md:flex-row items-center justify-center gap-7 min-h-screen px-6 py-12">
+    <section className="flex flex-col md:flex-row items-center justify-center gap-7 min-h-screen ">
         <img
             src={portrett}
             alt="Maja"

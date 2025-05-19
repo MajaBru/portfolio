@@ -1,5 +1,19 @@
 import React from "react";
-import { DiHtml5, DiCss3, DiJavascript1, DiReact, DiPhp, DiMysql, DiMongodb, DiSass, DiVisualstudio, DiRasberryPi, DiNodejs, DiPython } from "react-icons/di";
+import {
+  DiHtml5,
+  DiCss3,
+  DiJavascript1,
+  DiReact,
+  DiPhp,
+  DiMysql,
+  DiMongodb,
+  DiSass,
+  DiVisualstudio,
+  DiRasberryPi,
+  DiNodejs,
+  DiPython,
+} from "react-icons/di";
+import { motion, useReducedMotion } from "framer-motion";
 
 const IconWithLabel = ({ Icon, label }) => (
   <div className="relative group flex flex-col items-center">
@@ -11,21 +25,45 @@ const IconWithLabel = ({ Icon, label }) => (
 );
 
 export const AboutMe = () => {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
-    <section className="px-6 py-12 pb-70">
+    <section id="about" className=" pb-40">
       <h2 className="text-3xl font-bold mb-4">About me</h2>
       <div className="mb-12">
         <p className="text-lg text-base-900">
-          Hello! My name is Maja and I am 25 years old. I am currently finishing my bachelor's degree in <a href="https://www.ntnu.no/studier/bwu" target="_blank" rel="noopener noreferrer" className="text-accent underline">
-        Web Development </a> at NTNU Gjøvik.
-          I have always been interested in technology, which led me into this field. Throughout my studies,
-          I have learned to work with both frontend and backend technologies.
-          In my spare time, I enjoy gaming, hiking and traveling.
+          Hello! My name is Maja and I am 25 years old. I am currently finishing
+          my bachelor's degree in{" "}
+          <a
+            href="https://www.ntnu.no/studier/bwu"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent underline"
+          >
+            Web Development{" "}
+          </a>{" "}
+          at NTNU Gjøvik. I have always been interested in technology, which led
+          me into this field. Throughout my studies, I have learned to work with
+          both frontend and backend technologies. In my spare time, I enjoy
+          gaming, hiking and traveling.
         </p>
       </div>
 
       <h3 className="text-2xl font-bold pb-12">Technologies</h3>
-      <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-8 justify-center">
+      <motion.div
+        className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-8 justify-center"
+        initial={prefersReducedMotion ? {} : { opacity: 0, y: 10, scale: 0.95 }}
+        whileInView={
+          prefersReducedMotion
+            ? { opacity: 1, scale: 1 }
+            : { opacity: 1, y: 0, scale: 1 }
+        }
+        transition={{
+          duration: 0.4,
+          delay: prefersReducedMotion ? 0 : 0.3,
+        }}
+        viewport={{ once: false, amount: 0.3 }}
+      >
         <IconWithLabel Icon={DiHtml5} label="HTML5" />
         <IconWithLabel Icon={DiCss3} label="CSS3" />
         <IconWithLabel Icon={DiSass} label="SASS" />
@@ -38,7 +76,7 @@ export const AboutMe = () => {
         <IconWithLabel Icon={DiPhp} label="PHP" />
         <IconWithLabel Icon={DiPython} label="Python" />
         <IconWithLabel Icon={DiVisualstudio} label="Visual Studio Code" />
-      </div>
+      </motion.div>
     </section>
   );
 };
